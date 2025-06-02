@@ -6,11 +6,11 @@ class AuthService:
     def __init__(self):
         self.repo = MongoAuthRepository()
 
-    def cadastrar(self, nome, email, senha):
+    def cadastrar(self, nome, email, senha, data_nasc, telefone):
         if self.repo.achar_auth(nome):
             return None  # Usuario ja existe
         hashed_senha = generate_password_hash(senha)
-        self.repo.cadastrar(nome, email, hashed_senha)
+        self.repo.cadastrar(nome, email, hashed_senha, data_nasc, telefone)
         return {"message": "User criado"}
 
     def login(self, nome, senha):

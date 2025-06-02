@@ -11,7 +11,7 @@ class Config:
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "teste")
     FLASK_ENV = os.getenv("FLASK_ENV", "development")
     DEBUG = FLASK_ENV == "development"
-    MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017/")
+    MONGO_URL = os.getenv("MONGO_URL", "mongodb+srv://c_u1:1234@cluster0.iu8rug9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0") ##isso
     MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "db")
     GROQ_API_KEY = os.getenv("GROQ_API_KEY")
     

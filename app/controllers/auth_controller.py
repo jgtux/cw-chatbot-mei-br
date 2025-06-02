@@ -10,11 +10,13 @@ def cadastro():
     nome = data.get("nome")
     email = data.get("email")
     senha = data.get("senha")
+    data_nasc = data.get("data_nasc")
+    telefone = data.get("telefone")
 
-    if not nome or not senha or not email:
+    if not nome or not senha or not email or not data_nasc or not telefone:
         return jsonify({"error": "Campos faltantes"}), 400
 
-    result = auth_service.cadastrar(nome, email, senha)
+    result = auth_service.cadastrar(nome, email, senha, data_nasc, telefone)
     if not result:
         return jsonify({"error": "Usuario ja existe"}), 409
 
