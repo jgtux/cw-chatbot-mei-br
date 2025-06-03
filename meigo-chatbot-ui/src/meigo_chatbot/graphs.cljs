@@ -22,23 +22,14 @@
     (let [resp (<! (authed-request :get (str conf/api-url "/chat/grafos") {}))]
       (when resp
         (let [data (js->clj resp :keywordize-keys true)]
-          (println "Raw API response:" resp)
-          (println "Converted data:" data)
-          (println "Data keys:" (keys data))
           (reset! graph-data data))))))
 
 (defn init-cytoscape [container elements-data]
   (try
     (when (and container elements-data (exists? js/cytoscape))
-      ;; Clear container
       (set! (.-innerHTML container) "")
       
-      ;; Convert to JS and validate
       (let [elements-js (clj->js elements-data)]
-        (println "Converting elements:" elements-data)
-        (js/console.log "Elements JS:" elements-js)
-        
-        ;; Double-check elements-js is not null/undefined
         (when (and elements-js (not (undefined? elements-js)))
           (js/cytoscape
             #js {:container container
@@ -61,14 +52,12 @@
       (js/console.error "Container:" container)
       (js/console.error "Elements data:" elements-data))))
 
-;; Separate component that only renders when data is ready
 (defn cytoscape-graph [nodes edges]
   (r/create-class
     {:component-did-mount
      (fn [_]
        (when-let [container (js/document.getElementById "cy")]
          (let [elements (concat nodes edges)]
-           (println "Initializing Cytoscape with" (count nodes) "nodes and" (count edges) "edges")
            (js/setTimeout #(init-cytoscape container elements) 200))))
      
      :component-did-update
@@ -76,7 +65,6 @@
        (when-let [container (js/document.getElementById "cy")]
          (let [elements (concat nodes edges)]
            (when (or (not= nodes old-nodes) (not= edges old-edges))
-             (println "Updating Cytoscape")
              (js/setTimeout #(init-cytoscape container elements) 100)))))
      
      :reagent-render
@@ -139,7 +127,6 @@
   (r/create-class
     {:component-did-mount
      (fn [] 
-       (println "Component mounted, fetching graph data...")
        (fetch-graph))
      
      :reagent-render
@@ -165,14 +152,14 @@
             
             (and (valid-graph-data? data) (empty? (:nodes (:elementos data))))
             [:div
-             [:p {:style {:color "orange"}} "No nodes to display. The graph is empty."]]
+             [:p {:style {:color "orange"}} "Sem nodes para mostrar. O grafo esta vazio."]]
             
             :else
             (let [{:keys [nodes edges]} (:elementos data)]
               [:div
                [:p {:style {:margin-bottom "16px"
                             :color gray-dark}} 
-                (str "Graph loaded: " (count nodes) " nodes, " (count edges) " edges")]
+                (str "Grafo carregado: " (count nodes) " nodes, " (count edges) " edges")]
                [cytoscape-graph nodes edges]])))])}))
 
 

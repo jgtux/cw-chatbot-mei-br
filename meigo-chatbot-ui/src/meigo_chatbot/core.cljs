@@ -224,10 +224,8 @@
     (r/create-class
      {:component-did-mount
       (fn []
-        (println "Component mounted")
         (go
           (try
-            (println "Making request...")
             (let [response (<! (authed-request :get (str conf/api-url "/chat/historico") {}))]
               (reset! history (:historico response)))
             (catch js/Error e
@@ -235,7 +233,6 @@
               (reset! error "Failed to load chat history.")))))
       :reagent-render
       (fn []
-        (println "Rendering history panel, history:" @history "error:" @error)
         [:div {:style {:max-width "1200px"
                        :margin "20px 40px"
                        :padding "24px"
@@ -290,9 +287,9 @@
                                         :border-radius "8px"
                                         :box-shadow "0 1px 3px rgba(0,0,0,0.05)"}}
                           [:p {:style {:margin "0 0 6px 0"}}
-                           [:strong "Q: "] (or pergunta "[Pergunta ausente]")]
+                           [:strong "P: "] (or pergunta "[Pergunta ausente]")]
                           [:p {:style {:margin 0}}
-                           [:strong "A: "] (or resposta "[Resposta ausente]")]]))]))])
+                           [:strong "R: "] (or resposta "[Resposta ausente]")]]))]))])
              (catch :default e
                (println "Render error:" e)
                [:div

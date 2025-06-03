@@ -64,7 +64,7 @@
 (defn register []
   (reset! error-message "")
   (if (not= @password @confirm-password)
-    (reset! error-message "Passwords do not match")
+    (reset! error-message "Senhas diferentes")
     (do
       (reset! conf/loading? true)
       (let [payload {:nome @username
@@ -144,11 +144,9 @@
                    :padding "24px"
                    :border-radius "12px"
                    :box-shadow (str "0 8px 24px " border-light)}}
-    ;; Group all fields here
     [:div {:style {:display "flex"
                    :flex-direction "column"
                    :gap "12px"}}
-     ;; Username
      [:div {:style {:display "flex" :flex-direction "column"}}
       [:label {:style {:font-size "0.9rem"
                        :font-weight "500"
@@ -156,7 +154,7 @@
                        :margin-bottom "4px"}}
        "Usuário"]
       [:input {:type "text"
-               :placeholder "Username"
+               :placeholder "Nome"
                :value @username
                :disabled @conf/loading?
                :on-change #(reset! username (-> % .-target .-value .trim))
@@ -177,7 +175,7 @@
                        :margin-bottom "4px"}}
        "Senha"]
       [:input {:type "password"
-               :placeholder "Password"
+               :placeholder "Senha"
                :value @password
                :disabled @conf/loading?
                :on-change #(reset! password (-> % .-target .-value))
@@ -200,7 +198,7 @@
                           :margin-bottom "4px"}}
           "Confirmar Senha"]
          [:input {:type "password"
-                  :placeholder "Confirm Password"
+                  :placeholder "Senha"
                   :value @confirm-password
                   :disabled @conf/loading?
                   :on-change #(reset! confirm-password (-> % .-target .-value))
@@ -233,7 +231,6 @@
                           :background-color (if @conf/loading? gray-light bot-bubble-color)}
                   :on-focus #(set! (-> % .-target .-style .-borderColor) green-primary)
                   :on-blur #(set! (-> % .-target .-style .-borderColor) border-light)}]]
-        ;; Birthday (NEW)
         [:div {:style {:display "flex" :flex-direction "column"}}
          [:label {:style {:font-size "0.9rem"
                           :font-weight "500"
@@ -261,7 +258,7 @@
                           :margin-bottom "4px"}}
           "Telefone"]
          [:input {:type "tel"
-                  :placeholder "Phone"
+                  :placeholder "Telefone"
                   :value @phone
                   :disabled @conf/loading?
                   :on-change #(reset! phone (-> % .-target .-value))
@@ -274,8 +271,6 @@
                           :background-color (if @conf/loading? gray-light bot-bubble-color)}
                   :on-focus #(set! (-> % .-target .-style .-borderColor) green-primary)
                   :on-blur #(set! (-> % .-target .-style .-borderColor) border-light)}]]])]
-
-    ;; Submit Button
     [:div {:style {:margin-top "16px"
                    :text-align "center"}}
      [:button {:type "submit"
