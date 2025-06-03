@@ -8,5 +8,6 @@ class MongoAuthRepository:
         return self.collection.find_one({'nome': nome})
     def login(self, nome, senha): # logar auth
         return self.collection.find_one({'nome': nome})
-    def cadastrar(self, nome, email, hashed_senha): # Criar um auth
-        return self.collection.insert_one({'nome': nome, 'email': email, 'senha': hashed_senha})
+    def cadastrar(self, nome, email, hashed_senha, data_nasc, telefone): # Criar um auth
+        return self.collection.insert_one({'nome': nome, 'email': email, 'senha': hashed_senha,
+                                           'data_nasc': data_nasc, "telefone": telefone})

@@ -1,0 +1,466 @@
+/* Sidebar Layout: Use Flexbox to make footer always at the bottom */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%; /* Full height */
+    background-color: #fcfcfc;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Flex layout for vertical stacking */
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1; /* Sidebar grows to fill vertical space */
+}
+
+.sidebar {
+    flex-grow: 1;  /* Ensure the sidebar takes up all available vertical space */
+}
+
+footer {
+    margin-top: auto; /* Push the footer to the bottom */
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Sidebar transition when hidden */
+.sidebar-hidden {
+    transform: translateX(-100%); /* Hide sidebar */
+}
+
+/* The rest of your existing styles */
+body {
+    background-color: #ececec;
+    font-family: "Space Grotesk", serif;
+    color: #3d3d3d;
+}
+
+.sidebar-hidden {
+    transform: translateX(-100%);
+}
+
+thead {
+    border-bottom: 1px solid;
+    border-color: #3d3d3d;
+}
+
+.logo {
+   /* border-bottom: 1px solid; */
+    border-color: #3d3d3d;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: auto;
+}
+
+.toggle-side {
+    padding: 15px;
+    border: none;
+    background-color: #fcfcfc;
+    color: #3d3d3d;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+.content h1 {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+i {
+    margin-right: 10px;
+}
+
+.sidebar button {
+    display: block;
+    padding: 15px;
+    font-family: "Space Grotesk", serif;
+    font-size: 14px;
+    color: #3d3d3d;
+    background-color: #fcfcfc;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.sidebar button:hover {
+    background-color: #e1e1e1;
+}
+
+.content {
+    transition: margin-left 0.3s ease;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.topbar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    background-color: #fcfcfc;
+    transition: margin-left 0.3s ease;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #fcfcfc; /* Light background for header */
+    color: #3d3d3d; /* Matching color for text */
+    font-weight: bold;
+}
+
+th {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd; /* Border under header */
+}
+
+tbody tr {
+    background-color: #fcfcfc; /* White alternating rows */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd; /* Border under each row */
+}
+
+tbody tr:hover {
+    background-color: #f0f0f0; /* Hover effect on cells */
+}
+
+td, th {
+    color: #3d3d3d; /* Consistent text color */
+}
+
+table th, table td {
+    border-right: 1px solid #ddd; /* Border between columns */
+}
+
+table th:last-child, table td:last-child {
+    border-right: none; /* No right border on last column */
+}
+
+table {
+    box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Adding responsive design for smaller screens */
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px;
+        font-size: 12px; /* Smaller text for mobile */
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+    }
+}
+
+/* Modal container */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures modal is above other content */
+    visibility: hidden; /* Hidden by default, will be shown via JS */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out; /* Smooth fade-in/out */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fcfcfc;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px 0px; 
+    position: relative;
+}
+
+/* Close button (X) */
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3d3d3d;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-content .close:hover {
+    color: #d9534f; /* Red on hover */
+}
+
+/* Modal heading */
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #3d3d3d;
+    text-align: center;
+}
+
+/* Input fields inside the modal */
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-family: "Space Grotesk", serif; /* Ensures font consistency */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #3d3d3d;
+    transition: border 0.2s ease;
+}
+
+.modal-content input:focus {
+    border-color: #5c5c5c; /* Change border color on focus */
+    outline: none;
+}
+
+/* Modal action buttons container */
+.modal-content .button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Modal action buttons */
+.modal-content button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #3d3d3d;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effects for buttons */
+.modal-content button:hover {
+    background-color: #5c5c5c; /* Darker shade on hover */
+}
+
+/* Style for label in the modal */
+.modal-content label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #3d3d3d;
+    margin-bottom: 5px;
+}
+
+/* Style for the span element (non-editable values) */
+.modal-content span {
+    display: block;
+    font-size: 14px;
+    font-family: "Space Grotesk", serif; /* Ensures font consistency */
+    color: #5c5c5c; /* Slightly lighter text for details */
+    padding: 12px; /* Match padding of input */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Subtle background for non-editable fields */
+    margin-bottom: 15px;
+}
+
+/* Make the span appear like an input field in edit mode (without extra classes) */
+.modal-content input:focus ~ span,
+.modal-content span:hover {
+    background-color: #fff;
+    color: #3d3d3d; /* Darker text in edit mode */
+}
+
+/* Pagination Controls */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+/* Page buttons (Previous, Next) */
+.pagination button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #fcfcfc;
+    color: #3d3d3d;
+    font-size: 14px;
+    font-family: "Space Grotesk", serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+/* Hover effect for page buttons */
+.pagination button:hover {
+    background-color: #e1e1e1;
+}
+
+/* Disabled state for page buttons */
+.pagination button:disabled {
+    background-color: #f5f5f5;
+    color: #b0b0b0;
+    cursor: not-allowed;
+}
+
+/* Page number text (Current page indication) */
+.pagination span {
+    font-size: 14px;
+    color: #3d3d3d;
+}
+
+.auth-form {
+    background-color: #fcfcfc; /* Matching the background color */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px 0px; /* Soft shadow for the form */
+    max-width: 400px;
+    margin: 0 auto; /* Center the form */
+    margin-top: 100px; /* Ensure space from top */
+    font-family: "Space Grotesk", serif; /* Match the font-family */
+}
+
+/* Logo inside the auth-form */
+.auth-form .logo {
+    width: 100%;
+    height: auto;
+    border-bottom: none;
+    display: block;
+    margin-bottom: 20px; /* Space below the logo */
+}
+
+/* Input fields in auth form */
+.auth-form .auth-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form .auth-fields label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3d3d3d;
+    margin-bottom: 5px;
+}
+
+.auth-form .auth-fields input {
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-family: "Space Grotesk", serif;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #3d3d3d;
+    transition: border 0.2s ease;
+}
+
+.auth-form .auth-fields input:focus {
+    border-color: #5c5c5c; /* Darker border on focus */
+    outline: none;
+}
+
+/* Submit button styling */
+.auth-form .auth-submit {
+    text-align: center;
+}
+
+.auth-form .auth-submit button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #3d3d3d;
+    color: #fff;
+    font-size: 14px;
+    font-family: "Space Grotesk", serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-form .auth-submit button:hover {
+    background-color: #5c5c5c; /* Darker shade on hover */
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+    .auth-form {
+        padding: 20px; /* Less padding for mobile */
+        margin-top: 50px; /* Reduce top margin on mobile */
+    }
+
+    .auth-form .auth-fields input {
+        padding: 10px;
+        font-size: 12px; /* Smaller text for mobile */
+    }
+
+    .auth-form .auth-submit button {
+        padding: 10px 18px; /* Smaller button padding on mobile */
+    }
+}
+
+.loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading-screen .logo {
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;  /* Start invisible */
+    }
+    50% {
+        opacity: 1;  /* Full opacity in the middle */
+    }
+    100% {
+        opacity: 0;  /* End invisible again */
+    }
+}
