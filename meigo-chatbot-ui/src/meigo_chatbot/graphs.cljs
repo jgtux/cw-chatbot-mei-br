@@ -2,7 +2,8 @@
   (:require [reagent.core :as r]
             [meigo-chatbot.auth :refer [authed-request]]
             [meigo-chatbot.config :as conf]
-            [cljs.core.async :refer [go <!]]))
+            [cljs.core.async :refer [go <!]]
+            [cljs.pprint :refer [pprint]]))
 
 (defonce graph-data (r/atom nil))
 
@@ -120,7 +121,7 @@
                   (when (seq edges)
                     (str "First edge: " (first edges) "\n"
                          "Edge valid? " (validate-edge (first edges)) "\n")))))
-         "Full data: " (with-out-str (cljs.pprint/pprint data)))]])
+         "Full data: " (with-out-str (pprint data)))]])
 
 
 (defn history-graphs-panel []
