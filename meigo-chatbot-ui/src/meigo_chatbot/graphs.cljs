@@ -138,7 +138,7 @@
                       :border-radius "12px"
                       :box-shadow (str "0 8px 24px " border-light)}}
         [:h2 {:style {:margin-bottom "20px"
-                      :color text-dark}} "Histórico de Gráficos"]
+                      :color text-dark}} "Histórico de Grafos"]
         
         (let [data @graph-data]
           (cond

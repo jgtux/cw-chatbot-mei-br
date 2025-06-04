@@ -22069,3 +22069,17 @@ notifying browser that file changed:  resources/public/js/compiled/out/meigo_cha
 Compiling build :dev to "resources/public/js/compiled/meigo_chatbot.js" from ["src"]...
 [32mSuccessfully compiled build :dev to "resources/public/js/compiled/meigo_chatbot.js" in 0.717 seconds.[0m
 notifying browser that file changed:  resources/public/js/compiled/out/meigo_chatbot/graphs.js
+Compiling build :dev to "resources/public/js/compiled/meigo_chatbot.js" from ["src"]...
+[32mSuccessfully compiled build :dev to "resources/public/js/compiled/meigo_chatbot.js" in 0.984 seconds.[0m
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/meigo_chatbot/graphs.js
+Compiling build :dev to "resources/public/js/compiled/meigo_chatbot.js" from ["src"]...
+[32mSuccessfully compiled build :dev to "resources/public/js/compiled/meigo_chatbot.js" in 0.828 seconds.[0m
+notifying browser that file changed:  resources/public/js/compiled/out/meigo_chatbot/core.js
+Compiling build :dev to "resources/public/js/compiled/meigo_chatbot.js" from ["src"]...
+[32mSuccessfully compiled build :dev to "resources/public/js/compiled/meigo_chatbot.js" in 0.865 seconds.[0m
+notifying browser that file changed:  resources/public/js/compiled/out/meigo_chatbot/core.js
+Compiling build :dev to "resources/public/js/compiled/meigo_chatbot.js" from ["src"]...
+[32mSuccessfully compiled build :dev to "resources/public/js/compiled/meigo_chatbot.js" in 0.84 seconds.[0m
+notifying browser that file changed:  resources/public/js/compiled/out/meigo_chatbot/core.js
