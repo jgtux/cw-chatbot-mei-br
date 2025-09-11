@@ -1,3 +1,3 @@
 # trab-chatbot-pymongo
 
-Only for presentation for now, needs to structure well the UI as well as API
+Chatbot in Python with PyMongo and a ClojureScript UI, for Non-relational Databases. Only for demonstration (structure and optimization not prioritized).
