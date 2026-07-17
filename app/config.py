@@ -23,9 +23,15 @@ def load_system_prompt(path, max_chars=1500):
 
 load_dotenv()
 
+def _require_env(key):
+    value = os.getenv(key)
+    if not value:
+        raise RuntimeError(f"{key} environment variable must be set (see .env.example)")
+    return value
+
 class Config:
-    SECRET_KEY = os.getenv("SECRET_KEY", "defaultsecretkey")
-    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "teste")
+    SECRET_KEY = _require_env("SECRET_KEY")
+    JWT_SECRET_KEY = _require_env("JWT_SECRET_KEY")
     FLASK_ENV = os.getenv("FLASK_ENV", "development")
     DEBUG = FLASK_ENV == "development"
     MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017/")
