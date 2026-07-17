@@ -1,1 +1,9 @@
 .env
+__pycache__/
+*.pyc
+*.log
+.rebel_readline_history
+.venv/
+meigo-chatbot-ui/target/
+meigo-chatbot-ui/.cpcache/
+meigo-chatbot-ui/resources/public/js/compiled/
